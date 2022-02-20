@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @RestController
 public class PrimeController {
     private final PrimeService primeService;
-    //Logger logger = LoggerFactory.getLogger(PrimeController.class);
+    Logger logger = LoggerFactory.getLogger(PrimeController.class);
     public PrimeController(PrimeService primeService) {
         this.primeService = primeService;
     } //dependency injection
@@ -26,7 +26,7 @@ public class PrimeController {
             return list.stream().map(Object::toString)
                     .collect(Collectors.joining(","));
         } catch (IllegalArgumentException ex) {
-            //logger.info(" Illegal Parameter ({}) entered ", number);
+            logger.info(" Illegal Parameter ({}) entered ", number);
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "illegal number");
         } catch (Exception ex) {
